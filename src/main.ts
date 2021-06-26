@@ -1,8 +1,14 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+
+import App from './App.vue';
 import router from './router';
 
-import { IonicVue } from '@ionic/vue';
+/* Globally Imported Components */
+import { IonicVue, IonContent, IonPage, IonIcon, IonButton, IonRippleEffect } from '@ionic/vue';
+
+/* Ion Icons */
+import { addIcons } from 'ionicons';
+import { close } from 'ionicons/icons';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -24,9 +30,19 @@ import '@ionic/vue/css/display.css';
 import './theme/variables.css';
 
 const app = createApp(App)
-  .use(IonicVue)
-  .use(router);
-  
+    .use(IonicVue)
+    .use(router);
+
+app.component('ion-content', IonContent);
+app.component('ion-page', IonPage);
+app.component('ion-icon', IonIcon);
+app.component('ion-button', IonButton);
+app.component('ion-ripple-effect', IonRippleEffect);
+
+addIcons({
+    close
+});
+
 router.isReady().then(() => {
-  app.mount('#app');
+    app.mount('#app');
 });
