@@ -13,7 +13,7 @@ import { defineComponent } from 'vue';
 import { IonCard, IonCardContent, IonCardTitle, IonText } from '@ionic/vue';
 
 export default defineComponent({
-  name: 'AppHeading',
+  name: 'AppCard',
   components: { IonCard, IonCardContent, IonCardTitle, IonText },
   props: {
     title: String,
