@@ -1,6 +1,6 @@
 {
 	"appId": "io.ionic.starter",
-	"appName": "myPortfolio",
+	"appName": "my-portfolio",
 	"webDir": "dist",
 	"bundledWebRuntime": false
 }

@@ -4,9 +4,11 @@ import { IonSegment, IonSegmentButton } from '@ionic/vue';
 export default defineComponent({
     name: 'ViewerSelector',
     components: { IonSegment, IonSegmentButton },
+    props: {
+        value: String
+    },
     methods: {
         segmentChanged(event: CustomEvent) {
-            // console.log('Segment changed', event);
             this.$emit('viewSelected', event.detail.value);
         }
     }

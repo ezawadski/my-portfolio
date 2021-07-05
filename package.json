@@ -1,5 +1,5 @@
 {
-  "name": "myPortfolio",
+  "name": "my-portfolio",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -18,12 +18,15 @@
     "@ionic/vue": "^5.4.0",
     "@ionic/vue-router": "^5.4.0",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
     "vue": "^3.0.0-0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@capacitor/cli": "3.0.2",
     "@types/jest": "^24.0.19",
+    "@types/lodash": "^4.14.170",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",

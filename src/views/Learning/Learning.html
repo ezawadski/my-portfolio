@@ -1,7 +1,10 @@
 <ion-page>
   <ion-content :fullscreen="true">
     <app-header title="Learning"></app-header>
-    <viewer-selector @viewSelected="changeView"></viewer-selector>
+    <viewer-selector
+      :value="viewingType"
+      @viewSelected="changeView"
+    ></viewer-selector>
     <ion-grid>
       <ion-row v-if="viewingType === 'table'">
         <ion-col size-md="6" offset-md="3">

@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 
 import App from './App.vue';
 import router from './router';
+import { key, store } from './store';
 
 /* Globally Imported Components */
 import { IonicVue, IonContent, IonPage, IonIcon, IonButton, IonRippleEffect } from '@ionic/vue';
@@ -31,7 +32,8 @@ import './theme/variables.css';
 
 const app = createApp(App)
     .use(IonicVue)
-    .use(router);
+    .use(router)
+    .use(store, key);
 
 app.component('ion-content', IonContent);
 app.component('ion-page', IonPage);
