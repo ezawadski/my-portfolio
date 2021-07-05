@@ -12,7 +12,7 @@
 import { defineComponent } from 'vue';
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 
-import SideMenuLeft from '@/components/base/SideMenuLeft.vue';
+import SideMenuLeft from '@/components/base/SideMenuLeft/SideMenuLeft.vue';
 
 export default defineComponent({
   name: 'App',
@@ -24,7 +24,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
 .ripple-parent {
   position: relative;
   overflow: hidden;

@@ -1,0 +1,11 @@
+<ion-grid>
+  <ion-row>
+    <ion-col v-for="entry in data" :key="entry" size="12" :size-sm="cardSize">
+      <app-card
+        :title="entry[cardData.title]"
+        :imgUrl="entry[cardData.imgUrl]"
+        :text="entry[cardData.text]"
+      ></app-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

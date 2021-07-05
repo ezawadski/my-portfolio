@@ -1,0 +1,23 @@
+<ion-page>
+  <ion-content :fullscreen="true">
+    <app-header title="Learning"></app-header>
+    <viewer-selector @viewSelected="changeView"></viewer-selector>
+    <ion-grid>
+      <ion-row v-if="viewingType === 'table'">
+        <ion-col size-md="6" offset-md="3">
+          <app-table :columns="columns" :data="data"></app-table>
+        </ion-col>
+      </ion-row>
+      <ion-row v-if="viewingType === 'grid'">
+        <ion-col>
+          <app-grid :cardData="cardData" :cardSize="3" :data="data"></app-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row v-if="viewingType === 'slides'">
+        <ion-col>
+          <app-slides :cardData="cardData" :data="data"></app-slides>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-page>

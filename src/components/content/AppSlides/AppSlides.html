@@ -1,0 +1,9 @@
+<ion-slides pager="true" :options="slideOpts">
+  <ion-slide v-for="entry in data" :key="entry">
+    <app-card
+      :title="entry[cardData.title]"
+      :imgUrl="entry[cardData.imgUrl]"
+      :text="entry[cardData.text]"
+    ></app-card>
+  </ion-slide>
+</ion-slides>
