@@ -20,6 +20,9 @@ export default defineComponent({
     IonApp,
     IonRouterOutlet,
     SideMenuLeft
+  },
+  created() {
+    this.$store.dispatch('autoLogin');
   }
 });
 </script>

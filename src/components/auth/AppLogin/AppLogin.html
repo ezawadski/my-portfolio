@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+    <ion-buttons slot="end">
+      <ion-button @click="close">
+        <ion-icon slot="icon-only" icon="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card v-if="!isEric">
+    <ion-card-header>
+      <ion-card-title>
+        Are you Eric Zawadski?
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button @click="confirmIsEric">Yes</ion-button>
+      <ion-button @click="close">No</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card v-if="isEric && !isSure">
+    <ion-card-header>
+      <ion-card-title>
+        You Sure?
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button @click="confirmIsSure">Yes</ion-button>
+      <ion-button @click="close">No</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card v-if="isEric && isSure">
+    <ion-card-header>
+      <ion-card-title>
+        Ok, Sign In!
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Email:</ion-label>
+        <ion-input type="text" v-model="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password:</ion-label>
+        <ion-input
+          :type="showPassword ? 'text' : 'password'"
+          v-model="password"
+        ></ion-input>
+        <ion-icon
+          slot="end"
+          @click="showPassword = !showPassword"
+          :icon="showPassword ? eyeOff : eye"
+        ></ion-icon>
+      </ion-item>
+      <ion-button @click="signin">Sign In</ion-button>
+      <ion-button @click="close">Cancel</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

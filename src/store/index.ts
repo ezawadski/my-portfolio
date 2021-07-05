@@ -1,19 +1,26 @@
 import { InjectionKey } from 'vue';
-import { createStore, Store } from 'vuex';
+import { createStore, Store, useStore as baseUseStore } from 'vuex';
 
-import { CoursesState, CoursesStore } from './modules/courses.store';
-import { ProjectsState, ProjectsStore } from './modules/projects.store';
+import AuthStore, { AuthState } from './modules/auth.store';
+import CoursesStore, { CoursesState } from './modules/courses.store';
+import ProjectsStore, { ProjectsState } from './modules/projects.store';
 
 export interface AppState {
+    auth: AuthState;
     courses: CoursesState;
     projects: ProjectsState;
 }
 
 export const key: InjectionKey<Store<AppState>> = Symbol();
 
-export const store = createStore({
+export const store: Store<AppState> = createStore({
     modules: {
+        AuthStore,
         CoursesStore,
-        ProjectsStore
-    }
+        ProjectsStore,
+    },
 });
+
+export function useStore() {
+    return baseUseStore(key);
+}

@@ -4,5 +4,13 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button v-if="!isAuthenticated" @click="openSignIn">
+        SignIn
+      </ion-button>
+      <ion-button v-if="isAuthenticated" @click="signOut">
+        SignOut
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>

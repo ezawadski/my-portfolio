@@ -1,9 +1,10 @@
 import { defineComponent } from 'vue';
 import { IonGrid, IonRow, IonCol } from '@ionic/vue';
 
-import { store } from '@/store';
 import { ColumnData } from '@/models/ColumnData.model';
 import { CardData } from '@/models/CardData.model';
+import { Course } from '@/models/Course.model';
+
 import AppHeader from '@/components/base/AppHeader/AppHeader.vue';
 import AppTable from '@/components/content/AppTable/AppTable.vue';
 import AppGrid from '@/components/content/AppGrid/AppGrid.vue';
@@ -20,26 +21,29 @@ export default defineComponent({
         AppTable,
         AppGrid,
         AppSlides,
-        ViewerSelector
+        ViewerSelector,
     },
     data() {
         return {
             viewingType: 'grid',
             columns: [
                 { name: 'dateCompleted', label: 'Date Completed' },
-                { name: 'name', label: 'Name' }
+                { name: 'name', label: 'Name' },
             ] as ColumnData[],
-            cardData: { title: 'name', imgUrl: '', text: 'dateCompleted' } as CardData
+            cardData: new CardData('name', '', 'dateCompleted'),
         };
     },
     methods: {
         changeView(viewType: string) {
             this.viewingType = viewType;
-        }
+        },
     },
     computed: {
-        data() {
-            return store.getters.courses;
-        }
-    }
+        courseData(): Course[] {
+            return this.$store.getters.courses;
+        },
+        isAuthenticated(): boolean {
+            return this.$store.getters.isAuthenticated;
+        },
+    },
 });

@@ -1,9 +1,9 @@
 import { defineComponent } from 'vue';
-import { IonSegment, IonSegmentButton } from '@ionic/vue';
+import { IonSegment, IonSegmentButton, IonLabel } from '@ionic/vue';
 
 export default defineComponent({
     name: 'ViewerSelector',
-    components: { IonSegment, IonSegmentButton },
+    components: { IonSegment, IonSegmentButton, IonLabel },
     props: {
         value: String
     },

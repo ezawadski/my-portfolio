@@ -8,17 +8,21 @@
     <ion-grid>
       <ion-row v-if="viewingType === 'table'">
         <ion-col size-md="6" offset-md="3">
-          <app-table :columns="columns" :data="data"></app-table>
+          <app-table :columns="columns" :data="courseData"></app-table>
         </ion-col>
       </ion-row>
       <ion-row v-if="viewingType === 'grid'">
         <ion-col>
-          <app-grid :cardData="cardData" :cardSize="3" :data="data"></app-grid>
+          <app-grid
+            :cardData="cardData"
+            :cardSize="3"
+            :data="courseData"
+          ></app-grid>
         </ion-col>
       </ion-row>
       <ion-row v-if="viewingType === 'slides'">
         <ion-col>
-          <app-slides :cardData="cardData" :data="data"></app-slides>
+          <app-slides :cardData="cardData" :data="courseData"></app-slides>
         </ion-col>
       </ion-row>
     </ion-grid>
