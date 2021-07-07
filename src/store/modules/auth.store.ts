@@ -1,45 +1,47 @@
 import { ActionContext } from 'vuex';
 import { cloneDeep } from 'lodash';
 
-import auth from '@/api/auth';
+import authApi from '@/api/auth.api';
 
 import { AppState } from '..';
+import { Getters, Mutations, Actions } from '../types';
 
 export interface AuthState {
-    isAuthenticated: boolean;
+  isAuthenticated: boolean;
 }
 
 export default {
-    state: {
-        isAuthenticated: false,
+  state: {
+    isAuthenticated: true
+  },
+  getters: {
+    [Getters.IS_AUTHENTICATED]: (state: AuthState) =>
+      cloneDeep(state.isAuthenticated)
+  },
+  mutations: {
+    [Mutations.IS_AUTHENTICATED]: (
+      state: AuthState,
+      isAuthenticated: boolean
+    ) => (state.isAuthenticated = isAuthenticated)
+  },
+  actions: {
+    [Actions.LOGIN]: async (
+      context: ActionContext<AuthState, AppState>,
+      authData: { email: string; password: string }
+    ) => {
+      await authApi.login(authData.email, authData.password);
+      context.commit(Mutations.IS_AUTHENTICATED, true);
+      console.log('logged in');
     },
-    getters: {
-        isAuthenticated: (state: AuthState) => cloneDeep(state.isAuthenticated),
+    [Actions.LOGOUT]: async (context: ActionContext<AuthState, AppState>) => {
+      await authApi.logout();
+      context.commit(Mutations.IS_AUTHENTICATED, false);
+      console.log('logged out');
     },
-    mutations: {
-        isAuthenticated: (state: AuthState, isAuthenticated: boolean) =>
-            (state.isAuthenticated = isAuthenticated),
-    },
-    actions: {
-        login: (
-            context: ActionContext<AuthState, AppState>,
-            authData: { email: string; password: string }
-        ) => {
-            auth.login(authData.email, authData.password).then(() => {
-                context.commit('isAuthenticated', true);
-                console.log('logged in');
-            });
-        },
-        logout: (context: ActionContext<AuthState, AppState>) => {
-            auth.logout().then(() => {
-                context.commit('isAuthenticated', false);
-                console.log('logged out');
-            });
-        },
-        autoLogin: (context: ActionContext<AuthState, AppState>) => {
-            const isLoggedIn = auth.checkAuthenticated();
-            context.commit('isAuthenticated', isLoggedIn);
-            console.log('AUTO', isLoggedIn);
-        },
-    },
+    [Actions.AUTO_LOGIN]: (context: ActionContext<AuthState, AppState>) => {
+      const isLoggedIn = authApi.checkAuthenticated();
+      context.commit(Mutations.IS_AUTHENTICATED, isLoggedIn);
+      console.log('AUTO', isLoggedIn);
+    }
+  }
 };

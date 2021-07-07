@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ editMode ? 'Edit Course' : 'New Course' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button @click="close">
+        <ion-icon slot="icon-only" icon="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Course Info
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <ion-item>
+          <ion-label position="floating">Course Name:</ion-label>
+          <ion-input type="text" v-model="formData.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Date Completed:</ion-label>
+          <ion-datetime
+            diplayFormat="YYYY-MM-DD"
+            v-model="formData.dateCompleted"
+          ></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-button expand="block" @click="getImage">
+            <ion-icon :icon="camera"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <input
+          name="file"
+          type="file"
+          accept="image/*"
+          ref="fileInput"
+          @change="onFilePicked"
+          :hidden="true"
+        />
+        <ion-button @click="submit">
+          {{ editMode ? 'Update Course' : 'Create Course' }}
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

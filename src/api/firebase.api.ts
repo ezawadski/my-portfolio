@@ -13,13 +13,20 @@ class Firebase {
         this.initApp();
         this.initAuth();
         this.initFirestore();
+        this.initStorage();
     }
 
+    /**
+     * Initializes the Firebase SDK client
+     */
     private initApp() {
         console.log('FIREBASE', 'Init App');
         this.app = firebase.initializeApp(JSON.parse(process.env.VUE_APP_FIREBASE_CONFIG));
     }
 
+    /**
+     * Initializes the Firebase Auth client
+     */
     private initAuth() {
         console.log('FIREBASE', 'Init Auth');
         if (!this.app) throw new Error('Firebase Not Initilaized');
@@ -27,6 +34,9 @@ class Firebase {
         this.auth = this.app.auth();
     }
 
+    /**
+     * Initializes the Firebase Firestore client
+     */
     private initFirestore() {
         console.log('FIREBASE', 'Init Firestore');
         if (!this.app) throw new Error('Firebase Not Initilaized');
@@ -34,6 +44,9 @@ class Firebase {
         this.firestore = this.app.firestore();
     }
 
+    /**
+     * Initializes the Firebase Storage client
+     */
     private initStorage() {
         console.log('FIREBASE', 'Init Storage');
         if (!this.app) throw new Error('Firebase Not Initilaized');

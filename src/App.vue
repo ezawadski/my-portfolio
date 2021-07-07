@@ -13,6 +13,7 @@ import { defineComponent } from 'vue';
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 
 import SideMenuLeft from '@/components/base/SideMenuLeft/SideMenuLeft.vue';
+import { Actions } from '@/store/types';
 
 export default defineComponent({
   name: 'App',
@@ -22,7 +23,7 @@ export default defineComponent({
     SideMenuLeft
   },
   created() {
-    this.$store.dispatch('autoLogin');
+    // this.$store.dispatch(Actions.AUTO_LOGIN);
   }
 });
 </script>

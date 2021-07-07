@@ -4,12 +4,21 @@
       <th v-for="column in columns" :key="column">
         {{ column.label }}
       </th>
+      <th v-if="isAuthenticated">Admin Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="entry in data" :key="entry">
       <td v-for="column in columns" :key="column">
         {{ entry[column.name] }}
+      </td>
+      <td v-if="isAuthenticated">
+        <ion-button size="small" @click="editEntry(entry.id)">
+          <ion-icon :icon="pencil" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button size="small" @click="deleteEntry(entry.id)">
+          <ion-icon :icon="trash" slot="icon-only"></ion-icon>
+        </ion-button>
       </td>
     </tr>
   </tbody>

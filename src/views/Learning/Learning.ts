@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import { IonGrid, IonRow, IonCol } from '@ionic/vue';
+import { IonGrid, IonRow, IonCol, modalController } from '@ionic/vue';
 
 import { ColumnData } from '@/models/ColumnData.model';
 import { CardData } from '@/models/CardData.model';
@@ -10,40 +10,65 @@ import AppTable from '@/components/content/AppTable/AppTable.vue';
 import AppGrid from '@/components/content/AppGrid/AppGrid.vue';
 import AppSlides from '@/components/content/AppSlides/AppSlides.vue';
 import ViewerSelector from '@/components/content/ViewerSelector/ViewerSelector.vue';
+import CourseForm from '@/components/courses/CourseForm/CourseForm.vue';
+
+import { Actions, Getters } from '@/store/types';
 
 export default defineComponent({
-    name: 'Learning',
-    components: {
-        IonGrid,
-        IonRow,
-        IonCol,
-        AppHeader,
-        AppTable,
-        AppGrid,
-        AppSlides,
-        ViewerSelector,
+  name: 'Learning',
+  components: {
+    IonGrid,
+    IonRow,
+    IonCol,
+    AppHeader,
+    AppTable,
+    AppGrid,
+    AppSlides,
+    ViewerSelector
+  },
+  data() {
+    return {
+      viewingType: 'grid',
+      columns: [
+        { name: 'dateCompleted', label: 'Date Completed' },
+        { name: 'name', label: 'Name' }
+      ] as ColumnData[],
+      cardData: new CardData('name', 'imgUrl', 'dateCompleted')
+    };
+  },
+  methods: {
+    changeView(viewType: string) {
+      this.viewingType = viewType;
     },
-    data() {
-        return {
-            viewingType: 'grid',
-            columns: [
-                { name: 'dateCompleted', label: 'Date Completed' },
-                { name: 'name', label: 'Name' },
-            ] as ColumnData[],
-            cardData: new CardData('name', '', 'dateCompleted'),
-        };
+    async addCourse() {
+      const modal = await modalController.create({
+        component: CourseForm
+      });
+      modal.present();
     },
-    methods: {
-        changeView(viewType: string) {
-            this.viewingType = viewType;
-        },
+    async editCourse(courseId: string) {
+      const modal = await modalController.create({
+        component: CourseForm,
+        componentProps: {
+          courseData: this.courseData.find(course => course.id === courseId),
+          editMode: true
+        }
+      });
+      modal.present();
     },
-    computed: {
-        courseData(): Course[] {
-            return this.$store.getters.courses;
-        },
-        isAuthenticated(): boolean {
-            return this.$store.getters.isAuthenticated;
-        },
+    deleteCourse(courseId: string) {
+      this.$store.dispatch(Actions.DELETE_COURSE, courseId);
+    }
+  },
+  computed: {
+    courseData(): Course[] {
+      return this.$store.getters[Getters.COURSES];
     },
+    isAuthenticated(): boolean {
+      return this.$store.getters[Getters.IS_AUTHENTICATED];
+    }
+  },
+  created() {
+    this.$store.dispatch(Actions.LOAD_COURSES);
+  }
 });

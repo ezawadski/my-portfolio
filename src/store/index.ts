@@ -14,6 +14,7 @@ export interface AppState {
 export const key: InjectionKey<Store<AppState>> = Symbol();
 
 export const store: Store<AppState> = createStore({
+    strict: process.env.VUE_APP_ENV !== 'prod',
     modules: {
         AuthStore,
         CoursesStore,

@@ -1,6 +1,9 @@
 <ion-page>
   <ion-content :fullscreen="true">
     <app-header title="Learning"></app-header>
+    <ion-button v-if="isAuthenticated" @click="addCourse">
+      Add Course
+    </ion-button>
     <viewer-selector
       :value="viewingType"
       @viewSelected="changeView"
@@ -8,7 +11,12 @@
     <ion-grid>
       <ion-row v-if="viewingType === 'table'">
         <ion-col size-md="6" offset-md="3">
-          <app-table :columns="columns" :data="courseData"></app-table>
+          <app-table
+            :columns="columns"
+            :data="courseData"
+            @editEntry="editCourse"
+            @deleteEntry="deleteCourse"
+          ></app-table>
         </ion-col>
       </ion-row>
       <ion-row v-if="viewingType === 'grid'">
