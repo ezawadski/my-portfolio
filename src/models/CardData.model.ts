@@ -1,8 +1,10 @@
 export class CardData {
   constructor(
-    public id: string,
-    public title: string,
-    public imgUrl: string,
-    public text: string
+    public id: string = 'id',
+    public title: string = '',
+    public subtitle: string = '',
+    public imgUrl: string = '',
+    public text: string = '',
+    public date: string = ''
   ) {}
 }

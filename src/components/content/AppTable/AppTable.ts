@@ -1,4 +1,6 @@
 import { defineComponent, PropType } from 'vue';
+import { IonButtons } from '@ionic/vue';
+
 import { pencil, trash } from 'ionicons/icons';
 
 import { Getters } from '@/store/types';
@@ -25,5 +27,6 @@ export default defineComponent({
   },
   setup() {
     return { pencil, trash };
-  }
+  },
+  components: { IonButtons }
 });

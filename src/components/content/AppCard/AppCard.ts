@@ -3,6 +3,7 @@ import {
   IonCard,
   IonCardContent,
   IonCardTitle,
+  IonCardSubtitle,
   IonCardHeader,
   IonText,
   IonImg,
@@ -17,8 +18,10 @@ export default defineComponent({
   props: {
     id: String,
     title: String,
+    subtitle: String,
     imgUrl: String,
-    text: String
+    text: String,
+    date: String
   },
   computed: {
     isAuthenticated(): boolean {
@@ -29,17 +32,18 @@ export default defineComponent({
     return { pencil, trash };
   },
   methods: {
-    editEntry(id: string) {
-      this.$emit('editEntry', id);
+    editEntry() {
+      this.$emit('editEntry', this.id);
     },
-    deleteEntry(id: string) {
-      this.$emit('deleteEntry', id);
+    deleteEntry() {
+      this.$emit('deleteEntry', this.id);
     }
   },
   components: {
     IonCard,
     IonCardContent,
     IonCardTitle,
+    IonCardSubtitle,
     IonCardHeader,
     IonText,
     IonImg,

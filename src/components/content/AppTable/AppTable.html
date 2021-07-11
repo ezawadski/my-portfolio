@@ -13,12 +13,14 @@
         {{ entry[column.name] }}
       </td>
       <td v-if="isAuthenticated">
-        <ion-button size="small" @click="editEntry(entry.id)">
-          <ion-icon :icon="pencil" slot="icon-only"></ion-icon>
-        </ion-button>
-        <ion-button size="small" @click="deleteEntry(entry.id)">
-          <ion-icon :icon="trash" slot="icon-only"></ion-icon>
-        </ion-button>
+        <ion-buttons>
+          <ion-button size="small" @click="editEntry(entry.id)">
+            <ion-icon :icon="pencil" slot="icon-only"></ion-icon>
+          </ion-button>
+          <ion-button size="small" @click="deleteEntry(entry.id)">
+            <ion-icon :icon="trash" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </td>
     </tr>
   </tbody>

@@ -28,9 +28,11 @@ export default {
     [Mutations.ADD_COURSE]: (state: CoursesState, course: Course) =>
       state.courses.push(cloneDeep(course)),
     [Mutations.EDIT_COURSE]: (state: CoursesState, course: Course) =>
-      state.courses.map(c => (c.id === course.id ? cloneDeep(course) : c)),
+      (state.courses = state.courses.map(c =>
+        c.id === course.id ? cloneDeep(course) : c
+      )),
     [Mutations.REMOVE_COURSE]: (state: CoursesState, courseId: string) =>
-      state.courses.filter(course => course.id !== courseId)
+      (state.courses = state.courses.filter(course => course.id !== courseId))
   },
   actions: {
     [Actions.LOAD_COURSES]: async (

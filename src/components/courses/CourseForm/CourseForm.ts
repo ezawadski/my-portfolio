@@ -13,6 +13,9 @@ import {
   IonLabel,
   IonInput,
   IonDatetime,
+  IonSelect,
+  IonSelectOption,
+  IonTextarea,
   modalController
 } from '@ionic/vue';
 import { camera } from 'ionicons/icons';
@@ -20,6 +23,7 @@ import { cloneDeep } from 'lodash';
 import moment from 'moment';
 
 import { Course } from '@/models/Course.model';
+import { SkillCategory } from '@/models/SkillCategory.enum';
 import { Actions } from '@/store/types';
 
 export default defineComponent({
@@ -30,17 +34,14 @@ export default defineComponent({
   },
   data() {
     return {
-      formData: {
-        id: '',
-        name: '',
-        dateCompleted: '',
-        imgUrl: ''
-      },
       imageFile: new File([], '')
     };
   },
-  setup() {
-    return { camera };
+  setup(props) {
+    const formData = props.courseData
+      ? cloneDeep(props.courseData)
+      : new Course();
+    return { formData, camera, SkillCategory };
   },
   methods: {
     close() {
@@ -64,20 +65,22 @@ export default defineComponent({
       const course = new Course(
         this.formData.id,
         this.formData.name,
-        moment(this.formData.dateCompleted).format('YYYY-MMM-DD'),
+        this.formData.organization,
+        this.formData.description,
+        this.formData.studyHours,
+        moment(new Date(this.formData.dateCompleted).toISOString()).format(
+          'YYYY-MMM-DD'
+        ),
+        this.formData.categories,
+        this.formData.certificationLink,
+        this.formData.certificationId,
         this.formData.imgUrl
       );
       await this.$store.dispatch(
         this.editMode ? Actions.UPDATE_COURSE : Actions.CREATE_COURSE,
         { course, file: this.imageFile }
       );
-      console.log('finished');
       this.close();
-    }
-  },
-  created() {
-    if (this.courseData) {
-      this.formData = cloneDeep(this.courseData);
     }
   },
   components: {
@@ -93,6 +96,9 @@ export default defineComponent({
     IonItem,
     IonLabel,
     IonInput,
-    IonDatetime
+    IonDatetime,
+    IonSelect,
+    IonTextarea,
+    IonSelectOption
   }
 });

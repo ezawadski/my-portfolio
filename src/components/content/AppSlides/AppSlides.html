@@ -1,9 +1,12 @@
 <ion-slides pager="true" :options="slideOpts">
   <ion-slide v-for="entry in data" :key="entry">
     <app-card
+      :id="entry[cardData.id]"
       :title="entry[cardData.title]"
+      :subtitle="entry[cardData.subtitle]"
       :imgUrl="entry[cardData.imgUrl]"
       :text="entry[cardData.text]"
+      :date="entry[cardData.date]"
       @editEntry="editEntry"
       @deleteEntry="deleteEntry"
     ></app-card>

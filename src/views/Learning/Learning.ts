@@ -30,10 +30,19 @@ export default defineComponent({
     return {
       viewingType: 'grid',
       columns: [
-        { name: 'dateCompleted', label: 'Date Completed' },
-        { name: 'name', label: 'Name' }
+        { name: 'name', label: 'Name' },
+        { name: 'organization', label: 'Organization' },
+        { name: 'studyHours', label: 'Study Hours' },
+        { name: 'dateCompleted', label: 'Date Completed' }
       ] as ColumnData[],
-      cardData: new CardData('id', 'name', 'imgUrl', 'dateCompleted')
+      cardData: new CardData(
+        'id',
+        'name',
+        'organization',
+        'imgUrl',
+        'description',
+        'dateCompleted'
+      )
     };
   },
   methods: {

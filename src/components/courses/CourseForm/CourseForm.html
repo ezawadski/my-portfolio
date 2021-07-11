@@ -10,11 +10,6 @@
 </ion-header>
 <ion-content>
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        Course Info
-      </ion-card-title>
-    </ion-card-header>
     <ion-card-content>
       <form>
         <ion-item>
@@ -22,14 +17,47 @@
           <ion-input type="text" v-model="formData.name"></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label position="floating">Organization:</ion-label>
+          <ion-input type="text" v-model="formData.organization"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Description:</ion-label>
+          <ion-textarea
+            rows="3"
+            type="text"
+            v-model="formData.description"
+          ></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Study Hours:</ion-label>
+          <ion-input type="number" v-model="formData.studyHours"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label position="floating">Date Completed:</ion-label>
           <ion-datetime v-model="formData.dateCompleted"></ion-datetime>
         </ion-item>
         <ion-item>
-          <ion-button expand="block" @click="getImage">
-            <ion-icon :icon="camera"></ion-icon>
-          </ion-button>
+          <ion-label position="floating">Skill Categories:</ion-label>
+          <ion-select multiple="true" v-model="formData.categories">
+            <ion-select-option v-for="skill in SkillCategory" :value="skill">
+              {{ skill }}
+            </ion-select-option>
+          </ion-select>
         </ion-item>
+        <ion-item>
+          <ion-label position="floating">Certification URL:</ion-label>
+          <ion-input
+            type="text"
+            v-model="formData.certificationLink"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Certification ID:</ion-label>
+          <ion-input type="text" v-model="formData.certificationId"></ion-input>
+        </ion-item>
+        <ion-button expand="block" @click="getImage">
+          <ion-icon :icon="camera"></ion-icon>
+        </ion-button>
         <input
           name="file"
           type="file"
