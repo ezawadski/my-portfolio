@@ -33,7 +33,7 @@ export default defineComponent({
         { name: 'dateCompleted', label: 'Date Completed' },
         { name: 'name', label: 'Name' }
       ] as ColumnData[],
-      cardData: new CardData('name', 'imgUrl', 'dateCompleted')
+      cardData: new CardData('id', 'name', 'imgUrl', 'dateCompleted')
     };
   },
   methods: {

@@ -7,11 +7,18 @@ import AppCard from '../AppCard/AppCard.vue';
 
 export default defineComponent({
   name: 'AppGrid',
-  components: { IonGrid, IonRow, IonCol, AppCard },
-
   props: {
     cardSize: Number,
     cardData: CardData,
     data: Array
-  }
+  },
+  methods: {
+    editEntry(id: string) {
+      this.$emit('editEntry', id);
+    },
+    deleteEntry(id: string) {
+      this.$emit('deleteEntry', id);
+    }
+  },
+  components: { IonGrid, IonRow, IonCol, AppCard }
 });

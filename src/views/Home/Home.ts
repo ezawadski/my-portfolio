@@ -6,13 +6,13 @@ import AppHeading from '@/components/content/AppHeading/AppHeading.vue';
 import AppCard from '@/components/content/AppCard/AppCard.vue';
 
 export default defineComponent({
-    name: 'Home',
-    components: {
-        IonGrid,
-        IonRow,
-        IonCol,
-        AppHeader,
-        AppHeading,
-        AppCard
-    }
+  name: 'Home',
+  components: {
+    IonGrid,
+    IonRow,
+    IonCol,
+    AppHeader,
+    AppHeading,
+    AppCard
+  }
 });

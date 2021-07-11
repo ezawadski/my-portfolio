@@ -25,12 +25,19 @@
             :cardData="cardData"
             :cardSize="3"
             :data="courseData"
+            @editEntry="editCourse"
+            @deleteEntry="deleteCourse"
           ></app-grid>
         </ion-col>
       </ion-row>
       <ion-row v-if="viewingType === 'slides'">
         <ion-col>
-          <app-slides :cardData="cardData" :data="courseData"></app-slides>
+          <app-slides
+            :cardData="cardData"
+            :data="courseData"
+            @editEntry="editCourse"
+            @deleteEntry="deleteCourse"
+          ></app-slides>
         </ion-col>
       </ion-row>
     </ion-grid>

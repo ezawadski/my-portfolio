@@ -17,27 +17,13 @@ import {
 } from '@ionic/vue';
 import { camera } from 'ionicons/icons';
 import { cloneDeep } from 'lodash';
+import moment from 'moment';
 
 import { Course } from '@/models/Course.model';
 import { Actions } from '@/store/types';
 
 export default defineComponent({
   name: 'CourseForm',
-  components: {
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonButtons,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonDatetime
-  },
   props: {
     courseData: Course,
     editMode: { type: Boolean, default: false }
@@ -52,6 +38,9 @@ export default defineComponent({
       },
       imageFile: new File([], '')
     };
+  },
+  setup() {
+    return { camera };
   },
   methods: {
     close() {
@@ -75,7 +64,7 @@ export default defineComponent({
       const course = new Course(
         this.formData.id,
         this.formData.name,
-        this.formData.dateCompleted,
+        moment(this.formData.dateCompleted).format('YYYY-MMM-DD'),
         this.formData.imgUrl
       );
       await this.$store.dispatch(
@@ -86,12 +75,24 @@ export default defineComponent({
       this.close();
     }
   },
-  setup() {
-    return { camera };
-  },
   created() {
     if (this.courseData) {
       this.formData = cloneDeep(this.courseData);
     }
+  },
+  components: {
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonButtons,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonDatetime
   }
 });

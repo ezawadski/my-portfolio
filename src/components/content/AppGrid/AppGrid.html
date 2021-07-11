@@ -5,6 +5,8 @@
         :title="entry[cardData.title]"
         :imgUrl="entry[cardData.imgUrl]"
         :text="entry[cardData.text]"
+        @editEntry="editEntry"
+        @deleteEntry="deleteEntry"
       ></app-card>
     </ion-col>
   </ion-row>

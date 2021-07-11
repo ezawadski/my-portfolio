@@ -23,10 +23,7 @@
         </ion-item>
         <ion-item>
           <ion-label position="floating">Date Completed:</ion-label>
-          <ion-datetime
-            diplayFormat="YYYY-MM-DD"
-            v-model="formData.dateCompleted"
-          ></ion-datetime>
+          <ion-datetime v-model="formData.dateCompleted"></ion-datetime>
         </ion-item>
         <ion-item>
           <ion-button expand="block" @click="getImage">

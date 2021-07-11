@@ -23,7 +23,7 @@ export default defineComponent({
     SideMenuLeft
   },
   created() {
-    // this.$store.dispatch(Actions.AUTO_LOGIN);
+    this.$store.dispatch(Actions.AUTO_LOGIN);
   }
 });
 </script>
