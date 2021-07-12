@@ -38,31 +38,39 @@ export default {
     [Actions.LOAD_COURSES]: async (
       context: ActionContext<CoursesState, AppState>
     ) => {
+      context.commit(Mutations.SET_IS_LOADING, true);
       const courses = await coursesApi.loadCourses();
       context.commit(Mutations.SET_COURSES, courses);
+      context.commit(Mutations.SET_IS_LOADING, false);
     },
     [Actions.CREATE_COURSE]: async (
       context: ActionContext<CoursesState, AppState>,
       payload: { course: Course; file: File }
     ) => {
+      context.commit(Mutations.SET_IS_LOADING, true);
       const newCourse = cloneDeep(payload.course);
       newCourse.id = coursesApi.createCourseId();
       await coursesApi.setCourse(newCourse, payload.file);
       context.commit(Mutations.ADD_COURSE, newCourse);
+      context.commit(Mutations.SET_IS_LOADING, false);
     },
     [Actions.UPDATE_COURSE]: async (
       context: ActionContext<CoursesState, AppState>,
       payload: { course: Course; file: File }
     ) => {
+      context.commit(Mutations.SET_IS_LOADING, true);
       await coursesApi.setCourse(payload.course, payload.file);
       context.commit(Mutations.EDIT_COURSE, payload.course);
+      context.commit(Mutations.SET_IS_LOADING, false);
     },
-    [Actions.DELETE_COURSE]: (
+    [Actions.DELETE_COURSE]: async (
       context: ActionContext<CoursesState, AppState>,
       courseId: string
     ) => {
+      context.commit(Mutations.SET_IS_LOADING, true);
       context.commit(Mutations.REMOVE_COURSE, courseId);
-      return coursesApi.deleteCourse(courseId);
+      await coursesApi.deleteCourse(courseId);
+      context.commit(Mutations.SET_IS_LOADING, false);
     }
   }
 };

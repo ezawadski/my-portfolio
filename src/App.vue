@@ -4,26 +4,46 @@
       <side-menu-left></side-menu-left>
 
       <ion-router-outlet id="main" />
+      <ion-loading
+        :is-open="isLoadingRef"
+        message="Patience! Jeez..."
+      ></ion-loading>
     </ion-content>
   </ion-app>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
+import { defineComponent, ref } from 'vue';
+import { IonApp, IonRouterOutlet, IonLoading } from '@ionic/vue';
 
 import SideMenuLeft from '@/components/base/SideMenuLeft/SideMenuLeft.vue';
-import { Actions } from '@/store/types';
+import { Actions, Getters } from '@/store/types';
 
 export default defineComponent({
   name: 'App',
-  components: {
-    IonApp,
-    IonRouterOutlet,
-    SideMenuLeft
+  setup() {
+    const isLoadingRef = ref(false);
+    const setSpinner = (state: boolean) => (isLoadingRef.value = state);
+    return { isLoadingRef, setSpinner };
+  },
+  computed: {
+    isLoading(): boolean {
+      return this.$store.getters[Getters.IS_LOADING];
+    }
+  },
+  watch: {
+    isLoading() {
+      this.setSpinner(this.isLoading);
+    }
   },
   created() {
     this.$store.dispatch(Actions.AUTO_LOGIN);
+  },
+  components: {
+    IonApp,
+    IonRouterOutlet,
+    IonLoading,
+    SideMenuLeft
   }
 });
 </script>

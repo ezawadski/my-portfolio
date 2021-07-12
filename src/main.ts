@@ -5,7 +5,14 @@ import router from './router';
 import { key, store } from './store';
 
 /* Globally Imported Components */
-import { IonicVue, IonContent, IonPage, IonIcon, IonButton, IonRippleEffect } from '@ionic/vue';
+import {
+  IonicVue,
+  IonContent,
+  IonPage,
+  IonIcon,
+  IonButton,
+  IonRippleEffect
+} from '@ionic/vue';
 
 /* Ion Icons */
 import { addIcons } from 'ionicons';
@@ -31,9 +38,9 @@ import '@ionic/vue/css/display.css';
 import './theme/variables.css';
 
 const app = createApp(App)
-    .use(IonicVue)
-    .use(router)
-    .use(store, key);
+  .use(IonicVue)
+  .use(router)
+  .use(store, key);
 
 app.component('ion-content', IonContent);
 app.component('ion-page', IonPage);
@@ -42,9 +49,9 @@ app.component('ion-button', IonButton);
 app.component('ion-ripple-effect', IonRippleEffect);
 
 addIcons({
-    close
+  close
 });
 
 router.isReady().then(() => {
-    app.mount('#app');
+  app.mount('#app');
 });

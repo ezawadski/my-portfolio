@@ -1,12 +1,16 @@
 export enum Getters {
   IS_AUTHENTICATED = 'auth/isAuthenticated',
 
+  IS_LOADING = 'shared/isLoading',
+
   COURSE = 'courses/course',
   COURSES = 'courses/courses'
 }
 
 export enum Mutations {
   IS_AUTHENTICATED = 'auth/isAuthenticated',
+
+  SET_IS_LOADING = 'shared/isLoading',
 
   SET_COURSES = 'courses/setCourses',
   ADD_COURSE = 'courses/addCourse',
