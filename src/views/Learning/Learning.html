@@ -1,19 +1,32 @@
 <ion-page>
   <ion-content :fullscreen="true">
     <app-header title="Learning"></app-header>
-    <ion-button v-if="isAuthenticated" @click="addCourse">
-      Add Course
-    </ion-button>
-    <viewer-selector
-      :value="viewingType"
-      @viewSelected="changeView"
-    ></viewer-selector>
     <ion-grid>
+      <ion-row>
+        <ion-col size="1">
+          <ion-button @click="addCourse" v-if="isAuthenticated">
+            Add Course
+          </ion-button>
+        </ion-col>
+        <ion-col size="10" size-md="4" offset-md="3">
+          <viewer-selector
+            :value="viewingType"
+            @viewSelected="changeView"
+          ></viewer-selector>
+        </ion-col>
+        <ion-col size="1" offset="3">
+          <app-filter
+            filterTitle="Filter by Skill Category"
+            :filterOptions="SkillCategory"
+            @filters="onFilter"
+          ></app-filter>
+        </ion-col>
+      </ion-row>
       <ion-row v-if="viewingType === 'table'">
         <ion-col size-md="6" offset-md="3">
           <app-table
             :columns="columns"
-            :data="courseData"
+            :data="filteredData"
             @editEntry="editCourse"
             @deleteEntry="deleteCourse"
           ></app-table>
@@ -24,7 +37,7 @@
           <app-grid
             :cardData="cardData"
             :cardSize="3"
-            :data="courseData"
+            :data="filteredData"
             @editEntry="editCourse"
             @deleteEntry="deleteCourse"
           ></app-grid>
@@ -34,7 +47,7 @@
         <ion-col>
           <app-slides
             :cardData="cardData"
-            :data="courseData"
+            :data="filteredData"
             @editEntry="editCourse"
             @deleteEntry="deleteCourse"
           ></app-slides>

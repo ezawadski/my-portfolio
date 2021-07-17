@@ -1,0 +1,19 @@
+<ion-list>
+  <ion-item>
+    <ion-label class="ion-text-capitalize">{{ filterTitle }}</ion-label>
+  </ion-item>
+  <ion-item v-for="option in filters">
+    <ion-label>{{ option.value }}</ion-label>
+    <ion-checkbox
+      @update:modelValue="option.isChecked = $event"
+      :modelValue="option.isChecked"
+    >
+    </ion-checkbox>
+  </ion-item>
+  <ion-button color="primary" expand="block" @click="applyFilters">
+    Apply
+  </ion-button>
+  <ion-button color="light" expand="block" @click="clearFilters">
+    Clear Filters
+  </ion-button>
+</ion-list>
