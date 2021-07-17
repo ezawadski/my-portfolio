@@ -32,12 +32,14 @@ export default defineComponent({
           filterTitle: this.filterTitle,
           filterOptions: this.filterOptions,
           currentFilters: this.currentFilters
-        }
+        },
+        cssClass: 'filterPopover'
       });
       await popover.present();
 
       const { data } = await popover.onWillDismiss();
       if (data) {
+        console.log(data.filters);
         this.currentFilters = data.filters;
         this.filters(data.filters);
       }

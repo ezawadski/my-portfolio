@@ -1,6 +1,7 @@
 <ion-slides pager="true" :options="slideOpts">
   <ion-slide v-for="entry in data" :key="entry">
     <app-card
+      class="slideCard"
       :id="entry[cardData.id]"
       :title="entry[cardData.title]"
       :subtitle="entry[cardData.subtitle]"

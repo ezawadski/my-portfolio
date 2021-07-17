@@ -32,9 +32,10 @@ export default defineComponent({
   },
   methods: {
     applyFilters() {
-      const selected = this.filters.map(entry => {
+      const selected: string[] = [];
+      this.filters.forEach(entry => {
         if (entry.isChecked) {
-          return entry.value;
+          selected.push(entry.value);
         }
       });
       popoverController.dismiss({ filters: selected });

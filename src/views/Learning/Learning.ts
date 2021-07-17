@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue';
 import { IonGrid, IonRow, IonCol, modalController } from '@ionic/vue';
+import { add } from 'ionicons/icons';
 
 import { ColumnData } from '@/models/ColumnData.model';
 import { CardData } from '@/models/CardData.model';
@@ -39,7 +40,7 @@ export default defineComponent({
     };
   },
   setup() {
-    return { SkillCategory };
+    return { SkillCategory, add };
   },
   methods: {
     changeView(viewType: string) {

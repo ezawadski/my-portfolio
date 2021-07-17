@@ -2,6 +2,10 @@ ion-col {
     border: 1px solid black;
 }
 
+.tBody {
+    min-height: 52px;
+}
+
 .tBody:nth-child(even) {
     background-color: grayscale($color: #202020);
 }

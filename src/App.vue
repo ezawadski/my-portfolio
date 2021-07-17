@@ -53,4 +53,8 @@ export default defineComponent({
   position: relative;
   overflow: hidden;
 }
+
+.filterPopover .popover-content {
+  width: 280px;
+}
 </style>
