@@ -1,27 +1,23 @@
-<table>
-  <thead>
-    <tr>
-      <th v-for="column in columns" :key="column">
-        {{ column.label }}
-      </th>
-      <th v-if="isAuthenticated">Admin Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="entry in data" :key="entry">
-      <td v-for="column in columns" :key="column">
-        {{ entry[column.name] }}
-      </td>
-      <td v-if="isAuthenticated">
-        <ion-buttons>
-          <ion-button size="small" @click="editEntry(entry.id)">
-            <ion-icon :icon="pencil" slot="icon-only"></ion-icon>
-          </ion-button>
-          <ion-button size="small" @click="deleteEntry(entry.id)">
-            <ion-icon :icon="trash" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<ion-grid>
+  <ion-row class="tHead ion-text-center ion-text-uppercase">
+    <ion-col v-for="column in columns" :key="column">
+      {{ column.label }}
+    </ion-col>
+    <ion-col size="1" v-if="isAuthenticated">Admin</ion-col>
+  </ion-row>
+  <ion-row class="tBody" v-for="entry in data" :key="entry">
+    <ion-col v-for="column in columns" :key="column">
+      <div class="tCell">{{ entry[column.name] }}</div>
+    </ion-col>
+    <ion-col size="1" v-if="isAuthenticated" class="ion-text-center">
+      <ion-buttons>
+        <ion-button @click="editEntry(entry.id)">
+          <ion-icon :icon="pencil" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button @click="deleteEntry(entry.id)">
+          <ion-icon :icon="trash" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
+</ion-grid>

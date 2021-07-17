@@ -1,5 +1,5 @@
 import { defineComponent, PropType } from 'vue';
-import { IonButtons } from '@ionic/vue';
+import { IonGrid, IonRow, IonCol, IonButtons } from '@ionic/vue';
 
 import { pencil, trash } from 'ionicons/icons';
 
@@ -28,5 +28,5 @@ export default defineComponent({
   setup() {
     return { pencil, trash };
   },
-  components: { IonButtons }
+  components: { IonGrid, IonRow, IonCol, IonButtons }
 });

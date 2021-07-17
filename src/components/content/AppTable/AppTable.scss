@@ -1,0 +1,29 @@
+ion-col {
+    border: 1px solid black;
+}
+
+.tBody:nth-child(even) {
+    background-color: grayscale($color: #202020);
+}
+
+.tBody:nth-child(odd) {
+    background-color: grayscale($color: #161616);
+}
+
+.tBody:hover {
+    background-color: grayscale($color: #3f3f3f);
+}
+
+.tCell {
+    margin: 0;
+    padding-left: 5px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+ion-button {
+    height: 40px !important;
+    width: 40px !important;
+}
