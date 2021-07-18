@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import {
   IonContent,
   IonHeader,
@@ -23,13 +23,16 @@ import { cloneDeep } from 'lodash';
 import moment from 'moment';
 
 import { Course } from '@/models/Course.model';
-import { SkillCategory } from '@/models/SkillCategory.enum';
+import { SkillCategory } from '@/models/enums/SkillCategory.enum';
 import { Actions } from '@/store/types';
 
 export default defineComponent({
   name: 'CourseForm',
   props: {
-    courseData: Course,
+    courseData: {
+      type: Object as PropType<Course>,
+      required: false
+    },
     editMode: { type: Boolean, default: false }
   },
   data() {
@@ -78,7 +81,7 @@ export default defineComponent({
       );
       await this.$store.dispatch(
         this.editMode ? Actions.UPDATE_COURSE : Actions.CREATE_COURSE,
-        { course, file: this.imageFile }
+        { course, image: this.imageFile }
       );
       this.close();
     }

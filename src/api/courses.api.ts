@@ -32,23 +32,24 @@ export default {
   /**
    * Creates or Updates the course in Firestore and Firebase Storage
    * @param course Course to be created or updated
+   * @param image Image to be saved with the course
    * @returns A void promise
    */
-  async setCourse(course: Course, file: File): Promise<void> {
+  async setCourse(course: Course, image: File): Promise<Course> {
     const updatedCourse = cloneDeep(course);
-    if (file.size) {
-      console.log('do the thing');
+    if (image.size) {
       updatedCourse.imgUrl = await storageApi.saveFile(
         courseImagesPath,
         course.id,
-        file
+        image
       );
     }
     const snap = await firebaseApi.firestore
       .collection('/courses')
       .doc(updatedCourse.id)
       .get();
-    return snap.ref.set(utils.prepareData(updatedCourse));
+    snap.ref.set(utils.prepareData(updatedCourse));
+    return updatedCourse;
   },
 
   /**

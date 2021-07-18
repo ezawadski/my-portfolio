@@ -1,14 +1,15 @@
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { IonSlides, IonSlide } from '@ionic/vue';
 
 import { CardData } from '@/models/CardData.model';
+import utils from '@/utils/utilities';
 
 import AppCard from '../AppCard/AppCard.vue';
 
 export default defineComponent({
   name: 'AppSlides',
   props: {
-    cardData: CardData,
+    cardData: Object as PropType<CardData>,
     data: Array
   },
   setup() {
@@ -17,7 +18,8 @@ export default defineComponent({
       initialSlide: 1,
       speed: 400
     };
-    return { slideOpts };
+    const prettyPrint = utils.prettyPrint;
+    return { slideOpts, prettyPrint };
   },
   methods: {
     editEntry(id: string) {

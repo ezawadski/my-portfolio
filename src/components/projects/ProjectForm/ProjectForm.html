@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ editMode ? 'Edit Project' : 'New Project' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button @click="close">
+        <ion-icon slot="icon-only" icon="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form>
+        <ion-item>
+          <ion-label position="floating">Project Name:</ion-label>
+          <ion-input type="text" v-model="formData.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Description:</ion-label>
+          <ion-textarea
+            rows="3"
+            type="text"
+            v-model="formData.description"
+          ></ion-textarea>
+        </ion-item>
+        <ion-button expand="block" @click="getCoverImage">
+          <ion-icon :icon="camera"></ion-icon> Select Cover Image
+        </ion-button>
+        <input
+          name="file"
+          type="file"
+          accept="image/*"
+          ref="coverFileInput"
+          @change="onCoverFilePicked"
+          :hidden="true"
+        />
+        <ion-item>
+          <ion-label position="floating">Date Completed:</ion-label>
+          <ion-datetime v-model="formData.dateCompleted"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Languages:</ion-label>
+          <ion-select multiple="true" v-model="formData.languages">
+            <ion-select-option v-for="lag in Language" :value="lag">
+              {{ lag }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Frameworks:</ion-label>
+          <ion-select multiple="true" v-model="formData.frameworks">
+            <ion-select-option v-for="fw in Framework" :value="fw">
+              {{ fw }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Databases:</ion-label>
+          <ion-select multiple="true" v-model="formData.databases">
+            <ion-select-option v-for="db in Database" :value="db">
+              {{ db }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Cloud Providers:</ion-label>
+          <ion-select multiple="true" v-model="formData.cloudProviders">
+            <ion-select-option v-for="cp in CloudProvider" :value="cp">
+              {{ cp }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button expand="block" @click="getImage">
+          <ion-icon :icon="camera"></ion-icon> Select Project Images
+        </ion-button>
+        <input
+          name="file"
+          type="file"
+          accept="image/*"
+          ref="fileInput"
+          @change="onFilePicked"
+          :hidden="true"
+        />
+        <ion-list>
+          <ion-item v-for="file in imageFiles">
+            <ion-label>{{ file.name }}</ion-label>
+            <ion-button>
+              <ion-icon :icon="trash" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+        <ion-button @click="submit">
+          {{ editMode ? 'Update Project' : 'Create Project' }}
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

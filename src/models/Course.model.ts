@@ -1,4 +1,4 @@
-import { SkillCategory } from './SkillCategory.enum';
+import { SkillCategory } from './enums/SkillCategory.enum';
 
 export class Course {
   constructor(

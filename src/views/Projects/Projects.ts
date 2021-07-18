@@ -4,15 +4,15 @@ import { add } from 'ionicons/icons';
 
 import { ColumnData } from '@/models/ColumnData.model';
 import { CardData } from '@/models/CardData.model';
-import { Course } from '@/models/Course.model';
-import { SkillCategory } from '@/models/enums/SkillCategory.enum';
+import { Project } from '@/models/Project.model';
+import { Language } from '@/models/enums/Language.enum';
 
 import AppHeader from '@/components/base/AppHeader/AppHeader.vue';
 import AppTable from '@/components/content/AppTable/AppTable.vue';
 import AppGrid from '@/components/content/AppGrid/AppGrid.vue';
 import AppSlides from '@/components/content/AppSlides/AppSlides.vue';
 import ViewerSelector from '@/components/content/ViewerSelector/ViewerSelector.vue';
-import CourseForm from '@/components/courses/CourseForm/CourseForm.vue';
+import ProjectForm from '@/components/projects/ProjectForm/ProjectForm.vue';
 import AppFilter from '@/components/content/AppFilter/AppFilter.vue';
 
 import { Actions, Getters } from '@/store/types';
@@ -24,72 +24,72 @@ export default defineComponent({
       viewingType: 'grid',
       columns: [
         { name: 'name', label: 'Name' },
-        { name: 'organization', label: 'Organization' },
-        { name: 'studyHours', label: 'Study Hours' },
+        { name: 'languages', label: 'Languages' },
+        { name: 'frameworks', label: 'Frameworks' },
         { name: 'dateCompleted', label: 'Date Completed' }
       ] as ColumnData[],
       cardData: new CardData(
         'id',
         'name',
-        'organization',
-        'imgUrl',
+        'languages',
+        'coverImgUrl',
         'description',
         'dateCompleted'
       ),
-      filteredData: [] as Course[]
+      filteredData: [] as Project[]
     };
   },
   setup() {
-    return { SkillCategory, add };
+    return { Language, add };
   },
   methods: {
     changeView(viewType: string) {
       this.viewingType = viewType;
     },
-    async addCourse() {
+    async addProject() {
       const modal = await modalController.create({
-        component: CourseForm
+        component: ProjectForm
       });
       modal.present();
     },
-    async editCourse(courseId: string) {
+    async editProject(projectId: string) {
       const modal = await modalController.create({
-        component: CourseForm,
+        component: ProjectForm,
         componentProps: {
-          courseData: this.$store.getters[Getters.COURSE](courseId),
+          projectData: this.$store.getters[Getters.PROJECT](projectId),
           editMode: true
         }
       });
       modal.present();
     },
-    deleteCourse(courseId: string) {
-      this.$store.dispatch(Actions.DELETE_COURSE, courseId);
+    deleteProject(projectId: string) {
+      this.$store.dispatch(Actions.DELETE_PROJECT, projectId);
     },
     onFilter(filters: string[]) {
       if (!filters.length) {
-        this.filteredData = this.courseData;
+        this.filteredData = this.projectData;
       } else {
-        this.filteredData = this.courseData.filter(entry =>
-          entry.categories.some(cat => filters.includes(cat))
+        this.filteredData = this.projectData.filter(entry =>
+          entry.languages.some(lag => filters.includes(lag))
         );
       }
     }
   },
   computed: {
-    courseData(): Course[] {
-      return this.$store.getters[Getters.COURSES];
+    projectData(): Project[] {
+      return this.$store.getters[Getters.PROJECTS];
     },
     isAuthenticated(): boolean {
       return this.$store.getters[Getters.IS_AUTHENTICATED];
     }
   },
   watch: {
-    courseData() {
-      this.filteredData = this.courseData;
+    projectData() {
+      this.filteredData = this.projectData;
     }
   },
   created() {
-    this.$store.dispatch(Actions.LOAD_COURSES);
+    this.$store.dispatch(Actions.LOAD_PROJECTS);
   },
   components: {
     IonGrid,

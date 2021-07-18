@@ -5,11 +5,11 @@
     </ion-col>
     <ion-col size="1" v-if="isAuthenticated">Admin</ion-col>
   </ion-row>
-  <ion-row class="tBody" v-for="entry in data" :key="entry">
-    <ion-col v-for="column in columns" :key="column">
-      <div class="tCell">{{ entry[column.name] }}</div>
+  <ion-row class="tBody" v-for="entry in data" :key="entry.id">
+    <ion-col class="" v-for="column in columns" :key="column">
+      <div class="tCell">{{ prettyPrint(entry[column.name], 25) }}</div>
     </ion-col>
-    <ion-col size="1" v-if="isAuthenticated" class="ion-text-center">
+    <ion-col size="1" v-if="isAuthenticated">
       <ion-buttons>
         <ion-button @click="editEntry(entry.id)">
           <ion-icon :icon="pencil" slot="icon-only"></ion-icon>

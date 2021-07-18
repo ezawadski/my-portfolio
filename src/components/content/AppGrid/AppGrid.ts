@@ -1,7 +1,8 @@
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { IonGrid, IonRow, IonCol } from '@ionic/vue';
 
 import { CardData } from '@/models/CardData.model';
+import utils from '@/utils/utilities';
 
 import AppCard from '../AppCard/AppCard.vue';
 
@@ -9,8 +10,12 @@ export default defineComponent({
   name: 'AppGrid',
   props: {
     cardSize: Number,
-    cardData: CardData,
+    cardData: Object as PropType<CardData>,
     data: Array
+  },
+  setup() {
+    const prettyPrint = utils.prettyPrint;
+    return { prettyPrint };
   },
   methods: {
     editEntry(id: string) {

@@ -4,10 +4,7 @@
       <side-menu-left></side-menu-left>
 
       <ion-router-outlet id="main" />
-      <ion-loading
-        :is-open="isLoadingRef"
-        message="Patience! Jeez..."
-      ></ion-loading>
+      <ion-loading :is-open="isLoadingRef" :message="message"></ion-loading>
     </ion-content>
   </ion-app>
 </template>
@@ -26,6 +23,11 @@ export default defineComponent({
     const setSpinner = (state: boolean) => (isLoadingRef.value = state);
     return { isLoadingRef, setSpinner };
   },
+  data() {
+    return {
+      message: ''
+    };
+  },
   computed: {
     isLoading(): boolean {
       return this.$store.getters[Getters.IS_LOADING];
@@ -33,7 +35,19 @@ export default defineComponent({
   },
   watch: {
     isLoading() {
+      this.setMessage();
       this.setSpinner(this.isLoading);
+    }
+  },
+  methods: {
+    setMessage() {
+      const messages = [
+        'Patience! Jeez...',
+        'Just a minute, getting coffee...',
+        'LET ME FINISH POOPING!'
+      ];
+      const selected = Math.floor(Math.random() * messages.length);
+      this.message = messages[selected];
     }
   },
   created() {

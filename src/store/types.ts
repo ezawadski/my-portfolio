@@ -4,7 +4,10 @@ export enum Getters {
   IS_LOADING = 'shared/isLoading',
 
   COURSE = 'courses/course',
-  COURSES = 'courses/courses'
+  COURSES = 'courses/courses',
+
+  PROJECT = 'projects/project',
+  PROJECTS = 'projects/projects'
 }
 
 export enum Mutations {
@@ -15,7 +18,12 @@ export enum Mutations {
   SET_COURSES = 'courses/setCourses',
   ADD_COURSE = 'courses/addCourse',
   EDIT_COURSE = 'courses/editCourse',
-  REMOVE_COURSE = 'courses/removeCourse'
+  REMOVE_COURSE = 'courses/removeCourse',
+
+  SET_PROJECTS = 'projects/setProjects',
+  ADD_PROJECT = 'projects/addProject',
+  EDIT_PROJECT = 'projects/editProject',
+  REMOVE_PROJECT = 'projects/removeProject'
 }
 
 export enum Actions {
@@ -26,5 +34,10 @@ export enum Actions {
   LOAD_COURSES = 'courses/loadCourses',
   CREATE_COURSE = 'courses/createCourse',
   UPDATE_COURSE = 'courses/updateCourse',
-  DELETE_COURSE = 'courses/deleteCourse'
+  DELETE_COURSE = 'courses/deleteCourse',
+
+  LOAD_PROJECTS = 'projects/loadProjects',
+  CREATE_PROJECT = 'projects/createProject',
+  UPDATE_PROJECT = 'projects/updateProject',
+  DELETE_PROJECT = 'projects/deleteProject'
 }

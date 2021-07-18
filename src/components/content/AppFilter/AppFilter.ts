@@ -39,7 +39,6 @@ export default defineComponent({
 
       const { data } = await popover.onWillDismiss();
       if (data) {
-        console.log(data.filters);
         this.currentFilters = data.filters;
         this.filters(data.filters);
       }
