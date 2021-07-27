@@ -13,8 +13,11 @@
         :imgUrl="entry[cardData.imgUrl]"
         :text="prettyPrint(entry[cardData.text])"
         :date="entry[cardData.date]"
+        :withActions="withActions"
+        :withDetail="withDetail"
         @editEntry="editEntry"
         @deleteEntry="deleteEntry"
+        @goToDetail="goToDetail"
       ></app-card>
     </ion-col>
   </ion-row>

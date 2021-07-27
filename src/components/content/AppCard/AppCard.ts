@@ -21,7 +21,9 @@ export default defineComponent({
     subtitle: String,
     imgUrl: String,
     text: String,
-    date: String
+    date: String,
+    withActions: Boolean,
+    withDetail: Boolean
   },
   computed: {
     isAuthenticated(): boolean {
@@ -37,6 +39,9 @@ export default defineComponent({
     },
     deleteEntry() {
       this.$emit('deleteEntry', this.id);
+    },
+    goToDetail() {
+      this.$emit('goToDetail', this.id);
     }
   },
   components: {

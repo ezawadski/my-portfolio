@@ -1,14 +1,24 @@
 <ion-card>
   <ion-card-header>
-    <ion-card-title>{{ title }}</ion-card-title>
-    <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+    <ion-button
+      class="button-detail"
+      size="small"
+      color="light"
+      shape="round"
+      @click="goToDetail"
+      v-if="withDetail"
+    >
+      Dirty Details
+    </ion-button>
+    <ion-card-title v-if="title">{{ title }}</ion-card-title>
+    <ion-card-subtitle v-if="subtitle">{{ subtitle }}</ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
     <ion-img v-if="imgUrl" :src="imgUrl"></ion-img>
-    <ion-text>{{ text }}</ion-text>
+    <ion-text v-if="text">{{ text }}</ion-text>
     <hr />
     <ion-text v-if="date">Completed: {{ date }}</ion-text>
-    <ion-buttons v-if="isAuthenticated">
+    <ion-buttons v-if="isAuthenticated && withActions">
       <ion-button size="small" @click="editEntry">
         <ion-icon :icon="pencil" slot="icon-only"></ion-icon>
       </ion-button>

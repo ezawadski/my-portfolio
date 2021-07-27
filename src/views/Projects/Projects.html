@@ -42,8 +42,10 @@
             :cardData="cardData"
             :cardSize="3"
             :data="filteredData"
+            :withDetail="true"
             @editEntry="editProject"
             @deleteEntry="deleteProject"
+            @goToDetail="goToProjectDetail"
           ></app-grid>
         </ion-col>
       </ion-row>
@@ -52,8 +54,10 @@
           <app-slides
             :cardData="cardData"
             :data="filteredData"
+            :withDetail="true"
             @editEntry="editProject"
             @deleteEntry="deleteProject"
+            @goToDetail="goToProjectDetail"
           ></app-slides>
         </ion-col>
       </ion-row>

@@ -18,7 +18,7 @@ import AppFilter from '@/components/content/AppFilter/AppFilter.vue';
 import { Actions, Getters } from '@/store/types';
 
 export default defineComponent({
-  name: 'Learning',
+  name: 'Projects',
   data() {
     return {
       viewingType: 'grid',
@@ -73,6 +73,9 @@ export default defineComponent({
           entry.languages.some(lag => filters.includes(lag))
         );
       }
+    },
+    goToProjectDetail(projectId: string) {
+      this.$router.push({ name: 'projectDetail', params: { projectId } });
     }
   },
   computed: {

@@ -10,7 +10,15 @@ export default defineComponent({
   name: 'AppSlides',
   props: {
     cardData: Object as PropType<CardData>,
-    data: Array
+    data: Array,
+    withActions: {
+      type: Boolean,
+      default: true
+    },
+    withDetail: {
+      type: Boolean,
+      default: false
+    }
   },
   setup() {
     // Optional parameters to pass to the swiper instance. See http://idangero.us/swiper/api/ for valid options.
@@ -27,6 +35,9 @@ export default defineComponent({
     },
     deleteEntry(id: string) {
       this.$emit('deleteEntry', id);
+    },
+    goToDetail(id: string) {
+      this.$emit('goToDetail', id);
     }
   },
   components: { IonSlides, IonSlide, AppCard }

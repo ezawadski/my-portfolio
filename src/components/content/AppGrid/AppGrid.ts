@@ -11,7 +11,15 @@ export default defineComponent({
   props: {
     cardSize: Number,
     cardData: Object as PropType<CardData>,
-    data: Array
+    data: Array,
+    withActions: {
+      type: Boolean,
+      default: true
+    },
+    withDetail: {
+      type: Boolean,
+      default: false
+    }
   },
   setup() {
     const prettyPrint = utils.prettyPrint;
@@ -23,6 +31,9 @@ export default defineComponent({
     },
     deleteEntry(id: string) {
       this.$emit('deleteEntry', id);
+    },
+    goToDetail(id: string) {
+      this.$emit('goToDetail', id);
     }
   },
   components: { IonGrid, IonRow, IonCol, AppCard }
