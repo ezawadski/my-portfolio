@@ -1,6 +1,10 @@
 <ion-page>
   <ion-content :fullscreen="true">
-    <app-header :title="projectData && projectData.name"></app-header>
+    <app-header
+      :title="projectData && projectData.name"
+      :isDetail="true"
+      :defaultHref="'projects'"
+    ></app-header>
     <ion-grid>
       <ion-row>
         <ion-col size="3" size-md="1" offset="9" offset-md="11">

@@ -5,6 +5,7 @@ import {
   IonToolbar,
   IonButtons,
   IonMenuButton,
+  IonBackButton,
   modalController
 } from '@ionic/vue';
 
@@ -13,15 +14,13 @@ import { Actions, Getters } from '@/store/types';
 
 export default defineComponent({
   name: 'AppHeader',
-  components: {
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonButtons,
-    IonMenuButton
-  },
   props: {
-    title: String
+    title: String,
+    isDetail: {
+      type: Boolean,
+      default: false
+    },
+    defaultHref: String
   },
   computed: {
     isAuthenticated(): boolean {
@@ -38,5 +37,13 @@ export default defineComponent({
     signOut() {
       this.$store.dispatch(Actions.LOGOUT);
     }
+  },
+  components: {
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonButtons,
+    IonMenuButton,
+    IonBackButton
   }
 });
