@@ -3,6 +3,8 @@ export enum Getters {
 
   IS_LOADING = 'shared/isLoading',
 
+  ABOUT = 'about/about',
+
   COURSE = 'courses/course',
   COURSES = 'courses/courses',
 
@@ -14,6 +16,8 @@ export enum Mutations {
   IS_AUTHENTICATED = 'auth/isAuthenticated',
 
   SET_IS_LOADING = 'shared/isLoading',
+
+  SET_ABOUT = 'about/setAbout',
 
   SET_COURSES = 'courses/setCourses',
   ADD_COURSE = 'courses/addCourse',
@@ -30,6 +34,9 @@ export enum Actions {
   LOGIN = 'auth/login',
   LOGOUT = 'auth/logout',
   AUTO_LOGIN = 'auth/autoLogin',
+
+  LOAD_ABOUT = 'about/loadAbout',
+  SAVE_ABOUT = 'about/saveAbout',
 
   LOAD_COURSES = 'courses/loadCourses',
   CREATE_COURSE = 'courses/createCourse',

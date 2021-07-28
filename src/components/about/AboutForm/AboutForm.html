@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit About</ion-title>
+    <ion-buttons slot="end">
+      <ion-button @click="close">
+        <ion-icon slot="icon-only" icon="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form>
+        <ion-item>
+          <ion-label position="floating">Name:</ion-label>
+          <ion-input type="text" v-model="formData.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Title:</ion-label>
+          <ion-input type="text" v-model="formData.title"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Headline:</ion-label>
+          <ion-textarea
+            rows="2"
+            type="text"
+            v-model="formData.headline"
+          ></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Life Story:</ion-label>
+          <ion-textarea
+            rows="5"
+            type="text"
+            v-model="formData.lifeStory"
+          ></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email:</ion-label>
+          <ion-input type="text" v-model="formData.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">LinkedIn URL:</ion-label>
+          <ion-input type="text" v-model="formData.linkedInUrl"></ion-input>
+        </ion-item>
+        <ion-button expand="block" @click="getImage">
+          <ion-icon :icon="camera"></ion-icon> Profile Picture
+        </ion-button>
+        <input
+          name="file"
+          type="file"
+          accept="image/*"
+          ref="imageInput"
+          @change="onImagePicked"
+          :hidden="true"
+        />
+        <ion-button expand="block" @click="getFile">
+          <ion-icon :icon="document"></ion-icon> Resume
+        </ion-button>
+        <input
+          name="file"
+          type="file"
+          ref="fileInput"
+          @change="onFilePicked"
+          :hidden="true"
+        />
+        <ion-button @click="submit">
+          Save About
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

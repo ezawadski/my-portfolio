@@ -52,6 +52,7 @@ export default defineComponent({
   },
   created() {
     this.$store.dispatch(Actions.AUTO_LOGIN);
+    this.$store.dispatch(Actions.LOAD_ABOUT);
   },
   components: {
     IonApp,
