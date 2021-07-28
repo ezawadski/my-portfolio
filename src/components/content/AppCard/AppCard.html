@@ -14,7 +14,7 @@
     <ion-card-subtitle v-if="subtitle">{{ subtitle }}</ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
-    <ion-img v-if="imgUrl" :src="imgUrl"></ion-img>
+    <ion-img v-if="imgUrl" :src="imgUrl" class="ion-padding-bottom"></ion-img>
     <ion-text v-if="text">{{ text }}</ion-text>
     <hr />
     <ion-text v-if="date">Completed: {{ date }}</ion-text>

@@ -1,7 +1,7 @@
 <ion-page>
   <ion-content :fullscreen="true">
     <app-header title="Home"></app-header>
-    <ion-grid>
+    <ion-grid v-if="aboutData">
       <ion-row>
         <ion-col size="3" size-md="1" offset="9" offset-md="11">
           <ion-buttons v-if="isAuthenticated">
@@ -19,6 +19,32 @@
             :imgUrl="aboutData.profileImgUrl"
             :text="aboutData.headline"
           ></app-card>
+          <ion-row>
+            <ion-col>
+              <ion-button
+                color="primary"
+                expand="block"
+                :href="aboutData.resumeUrl"
+                target="_blank"
+              >
+                Resume
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button
+                color="secondary"
+                expand="block"
+                :href="aboutData.linkedInUrl"
+                target="_blank"
+              >
+                <ion-icon :icon="logoLinkedin"></ion-icon>
+                &nbsp;LinkedIn
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-text>
+            {{ aboutData.lifeStory }}
+          </ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>

@@ -71,16 +71,8 @@ export default defineComponent({
         console.log('error');
         return;
       }
-      const about = new About(
-        this.formData.name,
-        this.formData.title,
-        this.formData.headline,
-        this.formData.lifeStory,
-        this.formData.email,
-        this.formData.linkedInUrl
-      );
       await this.$store.dispatch(Actions.SAVE_ABOUT, {
-        about,
+        about: this.formData,
         image: this.imageFile,
         resume: this.resumeFile
       });

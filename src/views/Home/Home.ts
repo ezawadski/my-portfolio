@@ -4,9 +4,10 @@ import {
   IonRow,
   IonCol,
   IonButtons,
+  IonText,
   modalController
 } from '@ionic/vue';
-import { pencil } from 'ionicons/icons';
+import { pencil, logoLinkedin } from 'ionicons/icons';
 
 import { About } from '@/models/About.model';
 
@@ -20,7 +21,7 @@ export default defineComponent({
   name: 'Home',
 
   setup() {
-    return { pencil };
+    return { pencil, logoLinkedin };
   },
 
   computed: {
@@ -49,6 +50,7 @@ export default defineComponent({
     IonRow,
     IonCol,
     IonButtons,
+    IonText,
 
     AppHeader,
     AppCard
