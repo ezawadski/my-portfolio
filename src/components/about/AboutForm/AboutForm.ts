@@ -64,13 +64,15 @@ export default defineComponent({
       }
     },
     async submit() {
-      if (
-        (!this.formData.profileImgUrl && !this.imageFile.size) ||
-        (!this.formData.resumeUrl && !this.resumeFile.size)
-      ) {
-        console.log('error');
+      if (!this.formData.profileImgUrl && !this.imageFile.size) {
+        alert('Missing Profile Picture');
         return;
       }
+      if (!this.formData.resumeUrl && !this.resumeFile.size) {
+        alert('Missing Resume');
+        return;
+      }
+
       await this.$store.dispatch(Actions.SAVE_ABOUT, {
         about: this.formData,
         image: this.imageFile,

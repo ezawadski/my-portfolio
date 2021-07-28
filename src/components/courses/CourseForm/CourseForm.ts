@@ -62,7 +62,7 @@ export default defineComponent({
     },
     async submit() {
       if (!this.formData.imgUrl && !this.imageFile.size) {
-        console.log('error');
+        alert('Missing Image');
         return;
       }
       const course = new Course(

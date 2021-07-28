@@ -33,13 +33,11 @@ export default {
       const user = await authApi.login(authData.email, authData.password);
       localStorageApi.setLocalStorage('auth-user', user);
       context.commit(Mutations.IS_AUTHENTICATED, true);
-      console.log('logged in');
     },
     [Actions.LOGOUT]: async (context: ActionContext<AuthState, AppState>) => {
       await authApi.logout();
       localStorageApi.removeLocalStorage('auth-user');
       context.commit(Mutations.IS_AUTHENTICATED, false);
-      console.log('logged out');
     },
     [Actions.AUTO_LOGIN]: (context: ActionContext<AuthState, AppState>) => {
       const user = localStorageApi.getLocalStorage('auth-user');
