@@ -4,7 +4,6 @@ import {
   IonRow,
   IonCol,
   IonButtons,
-  IonText,
   modalController
 } from '@ionic/vue';
 import { pencil, logoLinkedin } from 'ionicons/icons';
@@ -50,7 +49,6 @@ export default defineComponent({
     IonRow,
     IonCol,
     IonButtons,
-    IonText,
 
     AppHeader,
     AppCard

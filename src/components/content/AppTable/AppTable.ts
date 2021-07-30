@@ -1,5 +1,5 @@
 import { defineComponent, PropType } from 'vue';
-import { IonGrid, IonRow, IonCol, IonButtons } from '@ionic/vue';
+import { IonGrid, IonRow, IonCol, IonButtons, IonCard } from '@ionic/vue';
 import { pencil, trash } from 'ionicons/icons';
 
 import utils from '@/utils/utilities';
@@ -29,5 +29,5 @@ export default defineComponent({
       this.$emit('deleteEntry', id);
     }
   },
-  components: { IonGrid, IonRow, IonCol, IonButtons }
+  components: { IonGrid, IonRow, IonCol, IonButtons, IonCard }
 });

@@ -12,7 +12,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size-md="6" offset-md="3">
+        <ion-col size="12" size-md="6">
           <app-card
             :title="aboutData.name"
             :subtitle="aboutData.title"
@@ -42,9 +42,13 @@
               </ion-button>
             </ion-col>
           </ion-row>
-          <ion-text>
-            {{ aboutData.lifeStory }}
-          </ion-text>
+        </ion-col>
+        <ion-col size="12" size-md="6">
+          <app-card
+            :title="'Life Story'"
+            :subtitle="'Short Version'"
+            :text="aboutData.lifeStory"
+          ></app-card>
         </ion-col>
       </ion-row>
     </ion-grid>
