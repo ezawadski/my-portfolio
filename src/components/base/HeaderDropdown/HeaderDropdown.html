@@ -1,0 +1,10 @@
+<ion-content>
+  <ion-list>
+    <ion-item v-if="!isAuthenticated" @click="openSignIn" button>
+      <ion-label>SignIn</ion-label>
+    </ion-item>
+    <ion-item v-if="isAuthenticated" @click="signOut" button>
+      <ion-label>SignOut</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

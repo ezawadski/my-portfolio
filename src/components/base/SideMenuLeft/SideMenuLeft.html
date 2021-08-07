@@ -1,10 +1,9 @@
 <ion-menu side="start" content-id="main">
   <ion-header>
-    <ion-toolbar class="ion-activatable ripple-parent" color="primary">
-      <ion-title @click="goTo('home')">
-        Home
+    <ion-toolbar color="primary">
+      <ion-title>
+        Eric Zawadski
       </ion-title>
-      <ion-ripple-effect></ion-ripple-effect>
       <ion-buttons slot="end">
         <ion-button @click="closeMenu">
           <ion-icon slot="icon-only" icon="close"></ion-icon>
@@ -16,7 +15,15 @@
     <ion-list>
       <ion-item
         class="ion-activatable ripple-parent"
-        type="button"
+        button
+        @click="goTo('home')"
+      >
+        Home
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-item>
+      <ion-item
+        class="ion-activatable ripple-parent"
+        button
         @click="goTo('learning')"
       >
         Learning
@@ -24,7 +31,7 @@
       </ion-item>
       <ion-item
         class="ion-activatable ripple-parent"
-        type="button"
+        button
         @click="goTo('projects')"
       >
         Projects

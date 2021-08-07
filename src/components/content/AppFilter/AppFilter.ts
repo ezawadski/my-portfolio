@@ -25,7 +25,7 @@ export default defineComponent({
     };
   },
   methods: {
-    async openFilters() {
+    async openFilters(event: Event) {
       const popover = await popoverController.create({
         component: AppFilterDropdown,
         componentProps: {
@@ -33,7 +33,8 @@ export default defineComponent({
           filterOptions: this.filterOptions,
           currentFilters: this.currentFilters
         },
-        cssClass: 'filterPopover'
+        cssClass: 'filterPopover',
+        event
       });
       await popover.present();
 

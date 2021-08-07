@@ -1,19 +1,58 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button v-if="!isDetail"></ion-menu-button>
+      <ion-menu-button v-if="!isDetail && isMobile"></ion-menu-button>
       <ion-back-button
         v-if="isDetail"
         :default-href="defaultHref"
       ></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ title }}</ion-title>
+    <ion-title>
+      <span v-if="isMobile">
+        {{ title }}
+      </span>
+      <span v-if="!isMobile">
+        Eric Zawadski
+      </span>
+    </ion-title>
     <ion-buttons slot="end">
-      <ion-button v-if="!isAuthenticated" @click="openSignIn">
-        SignIn
-      </ion-button>
-      <ion-button v-if="isAuthenticated" @click="signOut">
-        SignOut
+      <span v-if="!isMobile">
+        <router-link
+          :to="{name: 'home'}"
+          custom
+          v-slot="{ href, isActive }"
+          active-class="active"
+        >
+          <ion-button :class="{ active: isActive }" :router-link="href">
+            Home
+          </ion-button>
+        </router-link>
+        <router-link
+          :to="{name: 'learning'}"
+          custom
+          v-slot="{ href, isActive }"
+          active-class="active"
+        >
+          <ion-button :class="{ active: isActive }" :router-link="href">
+            Learning
+          </ion-button>
+        </router-link>
+        <router-link
+          :to="{name: 'projects'}"
+          custom
+          v-slot="{ href, isActive }"
+          active-class="active"
+        >
+          <ion-button :class="{ active: isActive }" :router-link="href">
+            Projects
+          </ion-button>
+        </router-link>
+      </span>
+      <ion-button @click="openDropdown">
+        <ion-icon
+          :icon="isPlatform('ios') ? ellipsisHorizontal : ellipsisVertical"
+          slot="icon-only"
+        ></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

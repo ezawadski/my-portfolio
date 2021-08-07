@@ -6,11 +6,12 @@ import {
   IonButtons,
   IonMenuButton,
   IonBackButton,
-  modalController
+  popoverController,
+  isPlatform
 } from '@ionic/vue';
+import { ellipsisHorizontal, ellipsisVertical } from 'ionicons/icons';
 
-import AppLogin from '@/components/auth/AppLogin/AppLogin.vue';
-import { Actions, Getters } from '@/store/types';
+import HeaderDropdown from '../HeaderDropdown/HeaderDropdown.vue';
 
 export default defineComponent({
   name: 'AppHeader',
@@ -22,20 +23,22 @@ export default defineComponent({
     },
     defaultHref: String
   },
+  setup() {
+    return { ellipsisHorizontal, ellipsisVertical, isPlatform };
+  },
   computed: {
-    isAuthenticated(): boolean {
-      return this.$store.getters[Getters.IS_AUTHENTICATED];
+    isMobile(): boolean {
+      return isPlatform('mobile');
     }
   },
   methods: {
-    async openSignIn() {
-      const modal = await modalController.create({
-        component: AppLogin
+    async openDropdown(event: Event) {
+      const popover = await popoverController.create({
+        component: HeaderDropdown,
+        event,
+        translucent: true
       });
-      return modal.present();
-    },
-    signOut() {
-      this.$store.dispatch(Actions.LOGOUT);
+      return popover.present();
     }
   },
   components: {
